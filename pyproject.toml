@@ -1,0 +1,8 @@
+[project]
+name = "proart-archlinux"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "dotbot>=1.24.1",
+    "rust-just>=1.50.0",
+]
