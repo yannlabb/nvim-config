@@ -3,3 +3,4 @@
 - link:
     ~/.config/nvim:
       path: nvim 
+      relink: true
