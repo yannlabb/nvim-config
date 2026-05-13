@@ -22,7 +22,9 @@ vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]], { remap = true })
 vim.opt.clipboard:append('unnamedplus')
 vim.opt.exrc = true
 vim.opt.secure = true
-vim.opt.autocomplete = true
+vim.opt.autocomplete = false
+vim.opt.complete = 'o,.,w,b,u,t'
+vim.cmd [[set completeopt+=menuone,noselect,popup]]
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>gg", "<cmd>Neogit cwd=%:p:h<cr>")
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
@@ -31,11 +33,10 @@ vim.keymap.set("n", "<leader>bf", function() vim.lsp.buf.format() end, { desc = 
 vim.api.nvim_create_autocmd({ "InsertLeave", }, {
 	group = vim.api.nvim_create_augroup("AutoWrite", { clear = true }),
 	callback = function(args)
-		if #vim.lsp.get_clients({ bufnr = args.buf }) > 0 then
-			vim.cmd("write")
-		end
+		vim.cmd("write")
 	end
 })
+
 
 vim.api.nvim_create_autocmd({ "BufWritePre", "InsertLeave" }, {
 	group = vim.api.nvim_create_augroup("AutoFormat", { clear = true }),
